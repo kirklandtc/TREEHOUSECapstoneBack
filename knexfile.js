@@ -2,11 +2,11 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgresql://localhost:5432/db_TREEHOUSEDB01'
+    connection: 'postgresql://localhost:5432/db_tree'
   },
   test: {
     client: 'pg',
-    connection: 'postgresql://localhost:5432/db_TREEHOUSEDB01'
+    connection: 'postgresql://localhost:5432/db_treetest'
   },
   production: {
     client: 'pg',
