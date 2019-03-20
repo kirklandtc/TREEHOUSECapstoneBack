@@ -2,17 +2,19 @@ var express = require('express');
 var router = express.Router();
 var knex = require('../knex')
 
-/* GET users listing. */
+/* GET home page. */
 router.get('/', function(req, res, next) {
+
+  // res.render('index', { title: 'Express' });
   knex('users')
   .then( data =>{
     res.send(data)
   })
-})
+});
 
 
 //List (get all of the resource)
-router.get('/:id', function(req, res, next) {
+router.get('/', function(req, res, next) {
   knex('users')
   .where('id', req.params.id)
   .first()
@@ -25,19 +27,18 @@ router.get('/:id', function(req, res, next) {
 })
 
 //Read (get one of the resource)
-router.get('/:id/presents', function(req,res,next){
-  knex('users')
-  .select('name', 'model', 'description')
+router.get('/:id/orders', function(req, res, next) {
+   knex('users')
+  .select('firstname','lastname')
   .where('users.id', req.params.id)
-  .join('description', 'users.id','recipient')
+  .join('orders','users.id')
   .then(data => {
-
-    let userWithPresents = {
-      name: data[0].name,
-      : data[0].model,
-      presents: data.map(userInfo => userInfo.description)
-    }
-    res.send(description)
+    var userWithOrder = {
+    firstname: data[0].name,
+    lastname: data[0].order,
+    orders: data.map(userInfo => userInfo.description)
+  }
+  res.send(userWithOrder)
   })
 })
 
@@ -72,7 +73,7 @@ router.patch('/:id', function(req,res,next){
 })
 
 //Delete (delete one of the resource)
-router.delete('/:id', function(req,res,next){
+router.delete('/:id', function(req, res, next) {
   knex('users')
   .where('id', req.params.id)
   .returning('*')
@@ -84,6 +85,4 @@ router.delete('/:id', function(req,res,next){
     next(err)
   })
 })
-
-
 module.exports = router;
