@@ -2,9 +2,9 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('treehouse', (table) => {
-    table.increments()
-    table.string('model').notNullable()
-    table.boolean('description').notNullable()
+    table.increments('id')
+    table.string('model').notNullable().unique()
+    table.string('description').notNullable()
     table.timestamps(true, true)
   })
 }
