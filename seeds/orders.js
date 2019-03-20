@@ -4,9 +4,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('orders').insert([
-        { name: 'project1', description: 'text1'},
-        { name: 'project2', description: 'text2'},
-        { name: 'project3', description: 'text3'}
+        { id: 1, user_id: 1, treehouse_id:1},
+        { id: 2, user_id: 2, treehouse_id:2},
+        { id: 3, user_id: 3, treehouse_id:3},
+
       ])
       .then(() => {
         return knex.raw("SELECT setval('orders_id_seq', (SELECT MAX(id) FROM orders))")

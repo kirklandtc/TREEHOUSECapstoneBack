@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     table.string('email').unique().notNullable()
     table.string('password').notNullable()
     table.string('address').notNullable()
-    table.string('address2').notNullable()
+    table.string('address2').defaultTo('')
     table.string('city').notNullable()
     table.string('state').notNullable()
     table.string('zip').notNullable()
