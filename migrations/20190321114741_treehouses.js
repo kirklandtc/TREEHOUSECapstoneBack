@@ -1,7 +1,7 @@
 'use  strict'
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('treehouse', (table) => {
+  return knex.schema.createTable('treehouses', (table) => {
     table.increments('id')
     table.string('model').notNullable().unique()
     table.string('description').notNullable()
@@ -10,5 +10,5 @@ exports.up = function(knex, Promise) {
 }
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('treehouse')
+  return knex.schema.dropTable('treehouses')
 }

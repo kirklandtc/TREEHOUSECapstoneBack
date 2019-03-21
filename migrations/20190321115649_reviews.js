@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
     table.integer('user_id')
     table.foreign('user_id').references('users.id').onDelete('CASCADE')
     table.integer('treehouse_id')
-    table.foreign('treehouse_id').references('treehouse.id').onDelete('CASCADE')
+    table.foreign('treehouse_id').references('treehouses.id').onDelete('CASCADE')
     table.timestamps(true, true)
 
   })
